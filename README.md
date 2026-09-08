@@ -1,5 +1,35 @@
 # React + TypeScript + Vite
 
+## Cash availability backend
+
+The map uses OpenStreetMap for nearby ATM locations. Cash availability must come from a bank or ATM-network provider, so the project includes a server-side proxy at `/api/atm-status`. Provider credentials are never exposed to the browser.
+
+1. Copy `.env.example` to `.env`.
+2. Set `ATM_PROVIDER_URL` and `ATM_PROVIDER_API_KEY` from your provider.
+3. Start the API in one terminal:
+
+```bash
+npm run api
+```
+
+4. Start the frontend in another terminal:
+
+```bash
+npm run dev
+```
+
+The provider endpoint should accept `latitude`, `longitude`, and `radius` query parameters and return JSON in this shape:
+
+```json
+{
+  "available": true,
+  "status": "cash_available",
+  "lastUpdated": "2026-09-08T10:00:00Z"
+}
+```
+
+Without a configured provider, the UI intentionally displays `Cash status unavailable`; it does not fabricate a cash balance.
+
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
 Currently, two official plugins are available:

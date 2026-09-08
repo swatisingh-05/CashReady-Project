@@ -244,7 +244,7 @@ export default function BankerDashboard() {
                   outerRadius={100}
                   label
                 >
-                  {healthData.map((entry, index) => (
+                  {healthData.map((_, index) => (
                     <Cell
                       key={index}
                       fill={COLORS[index]}

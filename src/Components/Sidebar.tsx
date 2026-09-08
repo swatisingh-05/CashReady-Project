@@ -23,7 +23,7 @@ export default function Sidebar() {
         p: 3,
       }}
     >
-      <Typography variant="h5" fontWeight="bold">
+      <Typography variant="h5" sx={{ fontWeight: "bold" }}>
         💵 CashReady
       </Typography>
 

@@ -13,7 +13,7 @@ export default function Navbar() {
         boxShadow: 1,
       }}
     >
-      <Typography variant="h5" fontWeight="bold">
+      <Typography variant="h5" sx={{ fontWeight: "bold" }}>
         CashReady AI
       </Typography>
 
