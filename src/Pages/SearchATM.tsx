@@ -41,7 +41,7 @@ export default function SearchATM() {
         variant="h4"
         sx={{
           fontWeight: "bold",
-          color: "#00175A",
+          color: "#16324F",
           mb: 4,
         }}
       >
@@ -61,7 +61,7 @@ export default function SearchATM() {
           variant="h4"
           sx={{
             fontWeight: "bold",
-            color: "#00175A",
+            color: "#16324F",
           }}
         >
           How Much Cash Do You Need Today?
@@ -139,7 +139,7 @@ export default function SearchATM() {
             variant="h4"
             sx={{
               fontWeight: "bold",
-              color: "#006FCF",
+              color: "#0F766E",
             }}
           >
             ₹75,000
@@ -158,7 +158,7 @@ export default function SearchATM() {
           <Typography
             sx={{
               fontWeight: "bold",
-              color: "#00175A",
+              color: "#16324F",
             }}
           >
             🤖 AI Assistant
@@ -187,7 +187,7 @@ export default function SearchATM() {
             fontSize: "16px",
             fontWeight: "bold",
             background:
-              "linear-gradient(135deg,#00175A,#006FCF)",
+              "linear-gradient(135deg,#16324F,#0F766E)",
           }}
           onClick={handleSearch}
         >

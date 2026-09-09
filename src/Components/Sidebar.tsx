@@ -44,11 +44,6 @@ export default function Sidebar() {
           <ListItemText primary="Map View" />
         </ListItemButton>
 
-        <ListItemButton
-          onClick={() => navigate("/banker-dashboard")}
-        >
-          <ListItemText primary="Banker Dashboard" />
-        </ListItemButton>
       </List>
     </Box>
   );

@@ -1,23 +1,34 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Landing from "./Pages/Landing";
-import Home from "./Pages/Home";
+import BackupLanding from "./Pages/BackupLanding";
 import SearchATM from "./Pages/SearchATM";
 import Results from "./Pages/Results";
 import MapView from "./Pages/MapView";
 import BankerDashboard from "./Pages/BankerDashboard";
+import Contact from "./Pages/Contact";
+import SiteHeader from "./Components/SiteHeader";
+import UnderDevelopment from "./Pages/UnderDevelopment";
 
 function App() {
   return (
     <BrowserRouter>
+      <SiteHeader />
+      <div className="app-content">
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/backup" element={<BackupLanding />} />
+        <Route path="/contact" element={<Contact />} />
 
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<Landing />} />
 
         <Route path="/search" element={<SearchATM />} />
 
         <Route path="/results" element={<Results />} />
+
+        <Route path="/forecasting" element={<UnderDevelopment title="Cash Forecasting" />} />
+        <Route path="/operations" element={<UnderDevelopment title="Operations Center" />} />
+        <Route path="/reports" element={<UnderDevelopment title="Reports" />} />
 
         <Route path="/map" element={<MapView />} />
 
@@ -26,6 +37,7 @@ function App() {
           element={<BankerDashboard />}
         />
       </Routes>
+      </div>
     </BrowserRouter>
   );
 }

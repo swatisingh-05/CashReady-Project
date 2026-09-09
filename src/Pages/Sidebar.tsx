@@ -45,11 +45,6 @@ export default function Sidebar() {
           <ListItemText primary="🗺 Navigation" />
         </ListItemButton>
 
-        <ListItemButton
-          onClick={() => navigate("/banker-dashboard")}
-        >
-          <ListItemText primary="📊 Operations Center" />
-        </ListItemButton>
       </List>
     </Box>
   );

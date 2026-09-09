@@ -195,7 +195,7 @@ export default function Results() {
         variant="h4"
         sx={{
           fontWeight: "bold",
-          color: "#00175A",
+          color: "#16324F",
           mb: 4,
         }}
       >
@@ -206,7 +206,7 @@ export default function Results() {
         sx={{
           p: 4,
           borderRadius: 5,
-          background: "linear-gradient(135deg,#00175A,#006FCF)",
+          background: "linear-gradient(135deg,#16324F,#0F766E)",
           color: "white",
           mb: 4,
         }}
@@ -237,7 +237,7 @@ export default function Results() {
           sx={{
             mt: 4,
             background: "white",
-            color: "#00175A",
+            color: "#16324F",
             fontWeight: "bold",
           }}
           onClick={() => navigate("/map")}
@@ -248,7 +248,7 @@ export default function Results() {
 
       <Typography
         variant="h5"
-        sx={{ color: "#00175A", fontWeight: "bold", mb: 3 }}
+        sx={{ color: "#16324F", fontWeight: "bold", mb: 3 }}
       >
         {atms.length} Nearby ATMs Found
       </Typography>
@@ -271,7 +271,7 @@ export default function Results() {
               sx={{ mb: 2 }}
             />
 
-            <Typography sx={{ fontWeight: "bold", color: "#00175A" }}>
+            <Typography sx={{ fontWeight: "bold", color: "#16324F" }}>
               #{index + 2}
             </Typography>
 
@@ -296,7 +296,7 @@ export default function Results() {
               variant="contained"
               sx={{
                 mt: 3,
-                background: "linear-gradient(135deg,#00175A,#006FCF)",
+                background: "linear-gradient(135deg,#16324F,#0F766E)",
               }}
               onClick={() => navigate("/map")}
             >
