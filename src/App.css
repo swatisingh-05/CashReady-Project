@@ -252,7 +252,8 @@
 
 .main-nav { display: flex; justify-content: space-between; align-items: center; min-height: 54px; padding: 0 25px; border-top: 1px solid #e7e8eb; border-bottom: 1px solid #e7e8eb; }
 .main-nav button { display: inline-flex; align-items: center; gap: 6px; padding: 10px 0; color: #00175a; font-weight: 700; font-size: 16px; }
-.main-nav button:first-child { color: #006fcf; }
+.main-nav button:first-child { color: #00175a; }
+.main-nav button.active { color: #006fcf; font-weight: 800; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
 
 .hero-section { display: flex; flex-direction: column; align-items: stretch; min-height: 620px; padding: 58px 10% 0; box-sizing: border-box; color: #fff; background: linear-gradient(115deg, #00175a 0%, #003b91 58%, #006fcf 100%); }
 .hero-main { display: flex; align-items: center; justify-content: space-between; flex: 1; }
