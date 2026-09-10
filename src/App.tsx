@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Landing from "./Pages/Landing";
 import Home from "./Pages/Home";
+import Login from "./Pages/Login";
 import SearchATM from "./Pages/SearchATM";
 import Results from "./Pages/Results";
 import MapView from "./Pages/MapView";
@@ -11,9 +11,22 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={<Home />} />
 
-        <Route path="/home" element={<Home />} />
+        <Route
+          path="/login/customer"
+          element={<Login role="customer" />}
+        />
+
+        <Route
+          path="/login/banker"
+          element={<Login role="banker" />}
+        />
+
+        <Route
+          path="/customer-dashboard"
+          element={<SearchATM />}
+        />
 
         <Route path="/search" element={<SearchATM />} />
 

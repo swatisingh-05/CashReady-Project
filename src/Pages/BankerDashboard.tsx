@@ -1,288 +1,432 @@
-import { Box, Card, Typography } from "@mui/material";
-import Sidebar from "../Components/Sidebar";
-
 import {
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-} from "recharts";
+  Box,
+  Typography,
+  Card,
+  CardContent,
+  Button,
+} from "@mui/material";
+
+import { useNavigate } from "react-router-dom";
 
 export default function BankerDashboard() {
-  const healthData = [
-    { name: "Healthy", value: 112 },
-    { name: "Refill", value: 21 },
-    { name: "Critical", value: 7 },
-  ];
+  const navigate = useNavigate();
 
-  const trendData = [
-    { day: "Mon", cash: 120 },
-    { day: "Tue", cash: 150 },
-    { day: "Wed", cash: 180 },
-    { day: "Thu", cash: 140 },
-    { day: "Fri", cash: 220 },
-    { day: "Sat", cash: 260 },
+  const kpis = [
+    {
+      title: "Active ATMs",
+      value: "2,450",
+      color: "#22C55E",
+    },
+    {
+      title: "Cash Availability",
+      value: "98.7%",
+      color: "#3B82F6",
+    },
+    {
+      title: "Forecast Accuracy",
+      value: "96%",
+      color: "#8B5CF6",
+    },
+    {
+      title: "Critical Alerts",
+      value: "12",
+      color: "#EF4444",
+    },
   ];
-
-  const COLORS = ["#22C55E", "#F59E0B", "#EF4444"];
 
   return (
     <>
-      <Sidebar />
+
+    <Box
+  sx={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    mb: 4,
+    pb: 2,
+    borderBottom: "1px solid #E5E7EB",
+  }}
+>
+  <Typography
+    variant="h4"
+    sx={{
+      fontWeight: 700,
+      color: "#00175A",
+    }}
+  >
+    📊 CashReady Operations Center
+  </Typography>
+
+  <Box
+    sx={{
+      display: "flex",
+      gap: 2,
+    }}
+  >
+    <Button onClick={() => navigate("/banker-dashboard")}>
+      Dashboard
+    </Button>
+
+    <Button onClick={() => navigate("/map")}>
+      ATM Locator
+    </Button>
+
+    <Button onClick={() => navigate("/forecast")}>
+      Forecast
+    </Button>
+
+    <Button onClick={() => navigate("/analytics")}>
+      Analytics
+    </Button>
+
+    <Button onClick={() => navigate("/reports")}>
+      Reports
+    </Button>
+  </Box>
+  
+</Box>
+    <Box
+      sx={{
+        p: 3,
+        bgcolor: "#F8FAFC",
+        minHeight: "100vh",
+      }}
+    >
+      {/* PAGE TITLE */}
+
+      <Typography
+        variant="h4"
+        sx={{
+          fontWeight: 700,
+          color: "#00175A",
+          mb: 3,
+        }}
+      >
+        📊 CashReady Operations Center
+      </Typography>
+
+      {/* KPI CARDS */}
 
       <Box
         sx={{
-          ml: "280px",
-          width: "calc(100% - 280px)",
-          minHeight: "100vh",
-          bgcolor: "#F5F7FA",
-          p: 4,
+          display: "grid",
+          gridTemplateColumns:
+            "repeat(auto-fit,minmax(220px,1fr))",
+          gap: 3,
         }}
       >
-        <Typography
-          variant="h4"
-          sx={{
-            fontWeight: "bold",
-            color: "#00175A",
-            mb: 4,
-          }}
-        >
-          📊 CashReady Operations Center
-        </Typography>
+        {kpis.map((item) => (
+          <Card
+            key={item.title}
+            sx={{
+              borderRadius: 4,
+              boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
+            }}
+          >
+            <CardContent>
+              <Typography
+                sx={{
+                  color: "#64748B",
+                  mb: 1,
+                }}
+              >
+                {item.title}
+              </Typography>
 
-        {/* KPI Cards */}
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns:
-              "repeat(auto-fit, minmax(250px, 1fr))",
-            gap: 3,
-            mb: 4,
-          }}
-        >
-          <Card sx={{ p: 3 }}>
-            <Typography color="gray">
-              🟢 Healthy ATMs
-            </Typography>
-
-            <Typography
-              variant="h3"
-              sx={{
-                color: "#16A34A",
-                fontWeight: "bold",
-              }}
-            >
-              112
-            </Typography>
+              <Typography
+                variant="h3"
+                sx={{
+                  fontWeight: 800,
+                  color: item.color,
+                }}
+              >
+                {item.value}
+              </Typography>
+            </CardContent>
           </Card>
+        ))}
+      </Box>
 
-          <Card sx={{ p: 3 }}>
-            <Typography color="gray">
-              🟡 Refill Soon
-            </Typography>
+      {/* OPERATIONS SECTION */}
 
-            <Typography
-              variant="h3"
-              sx={{
-                color: "#F59E0B",
-                fontWeight: "bold",
-              }}
-            >
-              21
-            </Typography>
-          </Card>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "2fr 1fr",
+          gap: 3,
+          mt: 4,
+        }}
+      >
+        {/* ATM MAP */}
 
-          <Card sx={{ p: 3 }}>
-            <Typography color="gray">
-              🔴 Critical ATMs
-            </Typography>
-
-            <Typography
-              variant="h3"
-              sx={{
-                color: "#DC2626",
-                fontWeight: "bold",
-              }}
-            >
-              7
-            </Typography>
-          </Card>
-        </Box>
-
-        {/* Forecast */}
         <Card
           sx={{
-            p: 4,
             borderRadius: 4,
-            mb: 4,
-            background:
-              "linear-gradient(135deg,#00175A,#006FCF)",
-            color: "white",
+            p: 3,
           }}
         >
-          <Typography variant="h5">
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: 700 }}
+          >
+            🗺 Live ATM Network
+          </Typography>
+
+          <Box
+            sx={{
+              mt: 2,
+              height: 400,
+              borderRadius: 3,
+              background:
+                "linear-gradient(135deg,#CBD5E1,#E2E8F0)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Typography variant="h5">
+              ATM Map Integration Area
+            </Typography>
+          </Box>
+        </Card>
+
+        {/* AI FORECAST */}
+
+        <Card
+          sx={{
+            borderRadius: 4,
+            p: 3,
+          }}
+        >
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: 700 }}
+          >
             🤖 AI Forecast Engine
           </Typography>
 
-          <Typography sx={{ mt: 2 }}>
-            ATM-034
-          </Typography>
+          <Box sx={{ mt: 3 }}>
+            <Typography color="text.secondary">
+              Tomorrow Cash Demand
+            </Typography>
 
-          <Typography
-            variant="h3"
-            sx={{ fontWeight: "bold" }}
-          >
-            Cash Out @ 7:15 PM
-          </Typography>
+            <Typography
+              variant="h3"
+              sx={{
+                fontWeight: 800,
+                color: "#00175A",
+              }}
+            >
+              ₹4.8 Cr
+            </Typography>
+          </Box>
 
-          <Typography sx={{ mt: 2 }}>
-            Confidence Score: 95%
-          </Typography>
+          <Box sx={{ mt: 4 }}>
+            <Typography color="text.secondary">
+              Refill Recommendation
+            </Typography>
+
+            <Typography
+              sx={{
+                color: "#22C55E",
+                fontWeight: 700,
+                mt: 1,
+              }}
+            >
+              18 ATMs Require Refill
+            </Typography>
+          </Box>
+
+          <Box sx={{ mt: 4 }}>
+            <Typography color="text.secondary">
+              Risk Level
+            </Typography>
+
+            <Typography
+              sx={{
+                color: "#F59E0B",
+                fontWeight: 700,
+                mt: 1,
+              }}
+            >
+              Moderate
+            </Typography>
+          </Box>
         </Card>
+      </Box>
 
-        {/* Refill Queue */}
+      {/* ALERTS + ANALYTICS */}
+
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 3,
+          mt: 4,
+        }}
+      >
+        {/* ALERTS */}
+
         <Card
           sx={{
-            p: 4,
+            p: 3,
             borderRadius: 4,
-            mb: 4,
           }}
         >
           <Typography
-            variant="h5"
+            variant="h6"
             sx={{
-              fontWeight: "bold",
-              color: "#00175A",
+              mb: 2,
+              fontWeight: 700,
             }}
           >
-            🚨 Refill Priority Queue
+            ⚠ Cash Risk Alerts
           </Typography>
 
-          <Typography sx={{ mt: 2 }}>
-            🔴 ATM-034 | Connaught Place
-          </Typography>
-
-          <Typography sx={{ mt: 2 }}>
-            🔴 ATM-089 | Rajiv Chowk
-          </Typography>
-
-          <Typography sx={{ mt: 2 }}>
-            🟡 ATM-112 | Barakhamba Road
-          </Typography>
+          {[
+            "ATM-101 Cash Below Threshold",
+            "ATM-204 Refill Required",
+            "ATM-315 Forecast Variance High",
+            "ATM-442 Cash Out Risk",
+          ].map((alert) => (
+            <Box
+              key={alert}
+              sx={{
+                p: 2,
+                mb: 1,
+                borderRadius: 2,
+                bgcolor: "#FEF2F2",
+              }}
+            >
+              <Typography>{alert}</Typography>
+            </Box>
+          ))}
         </Card>
 
-        {/* AI Insight */}
+        {/* ANALYTICS */}
+
         <Card
           sx={{
-            p: 4,
+            p: 3,
             borderRadius: 4,
-            mb: 4,
-            bgcolor: "#EEF5FF",
           }}
         >
           <Typography
-            variant="h5"
+            variant="h6"
             sx={{
-              fontWeight: "bold",
-              color: "#00175A",
+              mb: 2,
+              fontWeight: 700,
             }}
           >
-            💡 AI Insight
+            📈 Banking Analytics
           </Typography>
 
-          <Typography sx={{ mt: 2 }}>
-            Cash demand is expected to increase by
-            18% this weekend based on historical
-            withdrawal trends and festival activity.
-          </Typography>
+          <Box sx={{ mb: 3 }}>
+            <Typography>
+              Monthly Savings
+            </Typography>
 
-          <Typography
+            <Typography
+              variant="h4"
+              sx={{
+                color: "#22C55E",
+                fontWeight: 700,
+              }}
+            >
+              $1.2M
+            </Typography>
+          </Box>
+
+          <Box sx={{ mb: 3 }}>
+            <Typography>
+              Forecast Accuracy
+            </Typography>
+
+            <Typography
+              variant="h4"
+              sx={{
+                color: "#8B5CF6",
+                fontWeight: 700,
+              }}
+            >
+              96%
+            </Typography>
+          </Box>
+
+          <Button
+            variant="contained"
             sx={{
-              mt: 2,
-              color: "#16A34A",
-              fontWeight: "bold",
+              bgcolor: "#00175A",
             }}
           >
-            Recommendation: Increase replenishment
-            frequency for Delhi NCR ATMs.
-          </Typography>
+            View Full Report
+          </Button>
         </Card>
+      </Box>
 
-        {/* Charts */}
+      {/* ATM HEALTH */}
+
+      <Card
+        sx={{
+          mt: 4,
+          p: 3,
+          borderRadius: 4,
+        }}
+      >
+        <Typography
+          variant="h6"
+          sx={{
+            mb: 3,
+            fontWeight: 700,
+          }}
+        >
+          ✅ ATM Health Monitoring
+        </Typography>
+
         <Box
           sx={{
             display: "grid",
             gridTemplateColumns:
-              "repeat(auto-fit,minmax(450px,1fr))",
-            gap: 3,
+              "repeat(auto-fit,minmax(180px,1fr))",
+            gap: 2,
           }}
         >
-          <Card sx={{ p: 3 }}>
-            <Typography
-              variant="h6"
+          {[
+            "ATM-101",
+            "ATM-204",
+            "ATM-315",
+            "ATM-442",
+            "ATM-518",
+            "ATM-697",
+          ].map((atm) => (
+            <Card
+              key={atm}
               sx={{
-                fontWeight: "bold",
-                mb: 2,
+                p: 2,
+                textAlign: "center",
+                bgcolor: "#F0FDF4",
               }}
             >
-              ATM Health Distribution
-            </Typography>
+              <Typography
+                sx={{
+                  fontWeight: 700,
+                }}
+              >
+                {atm}
+              </Typography>
 
-            <ResponsiveContainer
-              width="100%"
-              height={300}
-            >
-              <PieChart>
-                <Pie
-                  data={healthData}
-                  dataKey="value"
-                  outerRadius={100}
-                  label
-                >
-                  {healthData.map((entry, index) => (
-                    <Cell
-                      key={index}
-                      fill={COLORS[index]}
-                    />
-                  ))}
-                </Pie>
-              </PieChart>
-            </ResponsiveContainer>
-          </Card>
-
-          <Card sx={{ p: 3 }}>
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: "bold",
-                mb: 2,
-              }}
-            >
-              Cash Demand Trend
-            </Typography>
-
-            <ResponsiveContainer
-              width="100%"
-              height={300}
-            >
-              <BarChart data={trendData}>
-                <XAxis dataKey="day" />
-                <YAxis />
-                <Tooltip />
-                <Bar
-                  dataKey="cash"
-                  fill="#006FCF"
-                />
-              </BarChart>
-            </ResponsiveContainer>
-          </Card>
+              <Typography
+                sx={{
+                  color: "#22C55E",
+                }}
+              >
+                Online
+              </Typography>
+            </Card>
+          ))}
         </Box>
-      </Box>
+      </Card>
+    </Box>
     </>
   );
 }

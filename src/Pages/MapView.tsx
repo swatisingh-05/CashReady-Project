@@ -6,6 +6,15 @@ import {
   Chip,
 } from "@mui/material";
 
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+} from "react-leaflet";
+
+import "leaflet/dist/leaflet.css";
+
 export default function MapView() {
   return (
     <Box
@@ -92,41 +101,18 @@ export default function MapView() {
               bgcolor: "#EEF5FF",
             }}
           >
-            <Typography fontWeight="bold">
-              🤖 AI Advice
-            </Typography>
-
-            <Typography sx={{ mt: 1 }}>
-              This ATM has the highest probability
-              of fulfilling your ₹50,000 request.
-            </Typography>
-          </Card>
-
-          <Card
+            <Typography
             sx={{
-              mt: 3,
-              p: 2,
-              bgcolor: "#F8FAFC",
-            }}
-          >
-            <Typography fontWeight="bold">
-              📍 Route Summary
-            </Typography>
+             fontWeight: "bold",
+    }}
+               >
+  🤖 AI Advice
+</Typography>
 
             <Typography sx={{ mt: 1 }}>
-              Current Location: Rajiv Chowk
-            </Typography>
-
-            <Typography>
-              Destination: HDFC ATM
-            </Typography>
-
-            <Typography>
-              Route Distance: 0.8 KM
-            </Typography>
-
-            <Typography>
-              Travel Time: 4 Minutes
+              This ATM has the highest
+              probability of fulfilling
+              your ₹50,000 request.
             </Typography>
           </Card>
 
@@ -143,74 +129,42 @@ export default function MapView() {
           </Button>
         </Card>
 
-        {/* Map Area */}
+        {/* Real Map */}
         <Card
           sx={{
             p: 2,
             borderRadius: 4,
           }}
         >
-          <Box
-            sx={{
+          <MapContainer
+            center={[28.6139, 77.209]}
+            zoom={13}
+            style={{
               height: "600px",
-              borderRadius: 3,
-              position: "relative",
-              overflow: "hidden",
-              backgroundColor: "#DCEEFF",
-
-              backgroundImage: `
-                linear-gradient(
-                  90deg,
-                  rgba(255,255,255,0.6) 1px,
-                  transparent 1px
-                ),
-                linear-gradient(
-                  rgba(255,255,255,0.6) 1px,
-                  transparent 1px
-                )
-              `,
-
-              backgroundSize: "50px 50px",
-
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              width: "100%",
+              borderRadius: "16px",
             }}
           >
-            <Typography
-              sx={{
-                position: "absolute",
-                top: 20,
-                left: 20,
-                fontWeight: "bold",
-                color: "#00175A",
-              }}
-            >
-              📍 Current Location
-            </Typography>
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
 
-            <Typography
-              sx={{
-                position: "absolute",
-                top: 120,
-                right: 100,
-                fontWeight: "bold",
-                color: "#DC2626",
-              }}
-            >
-              🏧 HDFC ATM
-            </Typography>
+            {/* Current Location */}
+            <Marker position={[28.6139, 77.209]}>
+              <Popup>
+                📍 Current Location
+              </Popup>
+            </Marker>
 
-            <Typography
-              variant="h4"
-              sx={{
-                fontWeight: "bold",
-                color: "#00175A",
-              }}
-            >
-              🗺 Smart Route Visualization
-            </Typography>
-          </Box>
+            {/* ATM */}
+            <Marker position={[28.6328, 77.2197]}>
+              <Popup>
+                🏧 HDFC ATM
+                <br />
+                Cash Available
+              </Popup>
+            </Marker>
+          </MapContainer>
         </Card>
       </Box>
     </Box>
